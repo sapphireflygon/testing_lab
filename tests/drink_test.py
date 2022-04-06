@@ -5,7 +5,7 @@ from src.drink import Drink
 
 class TestDrink(unittest.TestCase):
     def setUp(self):
-        self.drink = Drink("water", 2, 100, 0)
+        self.drink = Drink("water", 2, 0, 100)
 
     # @unittest.skip("Delete this line to run the test")
     def test_drink_name(self):

@@ -7,8 +7,8 @@ from src.food import Food
 
 class TestPub(unittest.TestCase):
     def setUp(self):
-        drinks_list = [Drink("water", 2, 100, 0), Drink("gin and tonic", 5, 20, 10), Drink("beer", 3, 50, 5)]
-        food_list = [Food("pizza", 15, 5), Food("salad", 7, 3)]
+        drinks_list = [Drink("water", 2, 0, 100), Drink("gin and tonic", 5, 10, 20), Drink("beer", 3, 5, 50)]
+        food_list = [Food("pizza", 15, 20, 5), Food("salad", 7, 50, 3)]
         self.pub = Pub("CodeClan Pub", 0, drinks_list, food_list)
         self.customer_example = Customer("John", 50, 0, 30)
         self.underage_customer = Customer("Josh", 100, 0, 16)
