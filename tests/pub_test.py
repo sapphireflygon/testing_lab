@@ -8,7 +8,7 @@ from src.food import Food
 class TestPub(unittest.TestCase):
     def setUp(self):
         drinks_list = [Drink("water", 2, 0, 100), Drink("gin and tonic", 5, 10, 20), Drink("beer", 3, 5, 50)]
-        food_list = [Food("pizza", 15, 20, 5), Food("salad", 7, 50, 3)]
+        food_list = [Food("pizza", 15, 2, 50), Food("salad", 7, 5, 30)]
         self.pub = Pub("CodeClan Pub", 0, drinks_list, food_list)
         self.customer_example = Customer("John", 50, 0, 30)
         self.underage_customer = Customer("Josh", 100, 0, 16)
@@ -104,3 +104,8 @@ class TestPub(unittest.TestCase):
         self.assertEqual(50, self.customer_example.wallet)
         self.assertEqual(0, self.pub.till)
     
+    def test_sell_food_despite_customer_drunk(self):
+        self.pub.sell_item_to_customer("salad", self.drunk_customer)
+        self.assertEqual(33, self.drunk_customer.wallet)
+        self.assertEqual(95, self.drunk_customer.drunkenness_level)
+        self.assertEqual(7, self.pub.till)

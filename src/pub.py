@@ -25,8 +25,14 @@ class Pub:
         desired_item_data = self.find_item_by_name(desired_item)
 
         if desired_item_data != None:
-            if self.customer_is_over_18(customer) == True and customer.drunkenness_level <= 20:
-                customer.remove_money_from_customer(desired_item_data.price)
-                self.add_money_to_till(desired_item_data.price)
-                customer.add_to_customer_drunkenness(desired_item_data.alcohol_level)
+            if hasattr(desired_item_data, "is_drink") == True:
+                if self.customer_is_over_18(customer) == True and customer.drunkenness_level <= 20:
+                    customer.add_to_customer_drunkenness(desired_item_data.alcohol_level)
+                else:
+                    return
+            else:
+                customer.drunkenness_level -= desired_item_data.rejuvenation_level
+            
+            customer.remove_money_from_customer(desired_item_data.price)
+            self.add_money_to_till(desired_item_data.price)
 
