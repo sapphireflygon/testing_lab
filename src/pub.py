@@ -1,8 +1,9 @@
 class Pub:
-    def __init__(self, input_name, input_till, input_drinks_list):
+    def __init__(self, input_name, input_till, input_drinks_list, input_food_list):
         self.name = input_name
         self.till = input_till
         self.drinks_list = input_drinks_list
+        self.food_list = input_food_list
 
     def find_drink_by_name(self, drink_name):
         for drink in self.drinks_list:
