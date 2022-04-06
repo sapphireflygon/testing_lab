@@ -8,7 +8,8 @@ class TestPub(unittest.TestCase):
     def setUp(self):
         drinks_list = [Drink("water", 2, 100, 0), Drink("gin and tonic", 5, 20, 3)]
         self.pub = Pub("CodeClan Pub", 0, drinks_list)
-        self.customer_example = Customer("John", 50)
+        self.customer_example = Customer("John", 50, 0, 30)
+        self.underage_customer = Customer("Josh", 100, 0, 16)
 
     # @unittest.skip("Delete this line to run the test")
     def test_pub_has_name(self):
@@ -40,8 +41,20 @@ class TestPub(unittest.TestCase):
         self.assertEqual("John", self.customer_example.name)
 
     # @unittest.skip("Delete this line to run the test")
+    def test_customer_is_over_18(self):
+        customer_over_age = self.pub.customer_is_over_18(self.customer_example)
+        self.assertEqual(True, customer_over_age)
+
+    # @unittest.skip("Delete this line to run the test")
     def test_sell_drink_to_customer(self):
         desired_drink = self.pub.find_drink_by_name("water")
         self.pub.sell_drink_to_customer(desired_drink, self.customer_example)
         self.assertEqual(48, self.customer_example.wallet)
         self.assertEqual(2, self.pub.till)
+
+    # @unittest.skip("Delete this line to run the test")
+    def test_sell_drink_to_customer__fail(self):
+        desired_drink = self.pub.find_drink_by_name("gin and tonic")
+        self.pub.sell_drink_to_customer(desired_drink, self.underage_customer)
+        self.assertEqual(100, self.underage_customer.wallet)
+        self.assertEqual(0, self.pub.till)

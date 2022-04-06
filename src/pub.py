@@ -12,6 +12,13 @@ class Pub:
     def add_money_to_till(self, amount):
         self.till += amount
 
+    def customer_is_over_18(self, customer):
+        if customer.age >= 18:
+            return True
+
     def sell_drink_to_customer(self, desired_drink, customer):
-        customer.remove_money_from_customer(desired_drink.price)
-        self.add_money_to_till(desired_drink.price)
+        if self.customer_is_over_18(customer) == True:
+            customer.remove_money_from_customer(desired_drink.price)
+            self.add_money_to_till(desired_drink.price)
+
+    

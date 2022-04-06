@@ -4,7 +4,7 @@ from src.customer import Customer
 
 class TestCustomer(unittest.TestCase):
     def setUp(self):
-        self.customer = Customer("John", 50)
+        self.customer = Customer("John", 50, 0, 30)
 
     # @unittest.skip("Delete this line to run the test")
     def test_customer_has_name(self):
@@ -18,3 +18,11 @@ class TestCustomer(unittest.TestCase):
     def test_remove_money_from_customer(self):
         self.customer.remove_money_from_customer(5)
         self.assertEqual(45, self.customer.wallet)
+
+    # @unittest.skip("Delete this line to run the test")
+    def test_customer_drunkenness_level(self):
+        self.assertEqual(0, self.customer.drunkenness_level)
+
+    # @unittest.skip("Delete this line to run the test")
+    def test_customer_age(self):
+        self.assertEqual(30, self.customer.age)
