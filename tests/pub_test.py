@@ -8,6 +8,7 @@ class TestPub(unittest.TestCase):
     def setUp(self):
         drinks_list = [Drink("water", 2, 100), Drink("gin and tonic", 5, 20)]
         self.pub = Pub("CodeClan Pub", 0, drinks_list)
+        self.customer_example = Customer("John", 50)
 
     # @unittest.skip("Delete this line to run the test")
     def test_pub_has_name(self):
@@ -34,9 +35,13 @@ class TestPub(unittest.TestCase):
         self.pub.add_money_to_till(5)
         self.assertEqual(5, self.pub.till)
 
+    # @unittest.skip("Delete this line to run the test")
+    def test_customer_is_in_pub(self):
+        self.assertEqual("John", self.customer_example.name)
 
-    @unittest.skip("Delete this line to run the test")
+    # @unittest.skip("Delete this line to run the test")
     def test_sell_drink_to_customer(self):
-        pass
-
-    
+        desired_drink = self.pub.find_drink_by_name("water")
+        self.pub.sell_drink_to_customer(desired_drink, self.customer_example)
+        self.assertEqual(48, self.customer_example.wallet)
+        self.assertEqual(2, self.pub.till)

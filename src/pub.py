@@ -12,4 +12,6 @@ class Pub:
     def add_money_to_till(self, amount):
         self.till += amount
 
-    
+    def sell_drink_to_customer(self, desired_drink, customer):
+        customer.remove_money_from_customer(desired_drink.price)
+        self.add_money_to_till(desired_drink.price)
