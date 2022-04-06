@@ -9,3 +9,7 @@ class Pub:
             if drink_name == drink.name:
                 return drink
     
+    def add_money_to_till(self, amount):
+        self.till += amount
+
+    
