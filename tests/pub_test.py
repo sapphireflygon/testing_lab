@@ -81,23 +81,26 @@ class TestPub(unittest.TestCase):
 
     # @unittest.skip("Delete this line to run the test")
     def test_sell_drink_to_customer(self):
-        desired_drink = self.pub.find_item_by_name("beer")
-        self.pub.sell_item_to_customer(desired_drink, self.customer_example)
+        self.pub.sell_item_to_customer("beer", self.customer_example)
         self.assertEqual(47, self.customer_example.wallet)
         self.assertEqual(3, self.pub.till)
         self.assertEqual(5, self.customer_example.drunkenness_level)
 
     # @unittest.skip("Delete this line to run the test")
     def test_sell_drink_to_customer__fail_age(self):
-        desired_drink = self.pub.find_item_by_name("gin and tonic")
-        self.pub.sell_item_to_customer(desired_drink, self.underage_customer)
+        self.pub.sell_item_to_customer("gin and tonic", self.underage_customer)
         self.assertEqual(100, self.underage_customer.wallet)
         self.assertEqual(0, self.pub.till)
 
     # @unittest.skip("Delete this line to run the test")
     def test_sell_drink_to_customer__fail_drunk(self):
-        desired_drink = self.pub.find_item_by_name("beer")
-        self.pub.sell_item_to_customer(desired_drink, self.drunk_customer)
+        self.pub.sell_item_to_customer("beer", self.drunk_customer)
         self.assertEqual(40, self.drunk_customer.wallet)
+        self.assertEqual(0, self.pub.till)
+
+    # @unittest.skip("Delete this line to run the test")
+    def test_sell_item_drink_to_customer__fail_drink_doesnt_exist(self):
+        self.pub.sell_item_to_customer("wine", self.customer_example)
+        self.assertEqual(50, self.customer_example.wallet)
         self.assertEqual(0, self.pub.till)
     
