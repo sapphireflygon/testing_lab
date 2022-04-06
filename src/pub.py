@@ -5,10 +5,14 @@ class Pub:
         self.drinks_list = input_drinks_list
         self.food_list = input_food_list
 
-    def find_drink_by_name(self, drink_name):
-        for drink in self.drinks_list:
-            if drink_name == drink.name:
-                return drink
+    def find_item_by_name(self, item_name):
+        for item in self.drinks_list:
+            if item_name == item.name:
+                return item
+
+        for item in self.food_list:
+            if item_name == item.name:
+                return item
     
     def add_money_to_till(self, amount):
         self.till += amount

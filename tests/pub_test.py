@@ -25,13 +25,25 @@ class TestPub(unittest.TestCase):
     # @unittest.skip("Delete this line to run the test")
     def test_find_drink_by_name(self):
         first_drink = self.pub.drinks_list[1]
-        desired_drink = self.pub.find_drink_by_name("gin and tonic")
+        desired_drink = self.pub.find_item_by_name("gin and tonic")
         self.assertEqual(first_drink, desired_drink)
 
     # @unittest.skip("Delete this line to run the test")
     def test_find_drink_by_name__fail(self):
-        desired_drink = self.pub.find_drink_by_name("cider")
+        desired_drink = self.pub.find_item_by_name("cider")
         self.assertEqual(None, desired_drink)
+
+    # @unittest.skip("Delete this line to run the test")
+    def test_find_item_by_name__drink(self):
+        first_drink = self.pub.drinks_list[1]
+        desired_item = self.pub.find_item_by_name("gin and tonic")
+        self.assertEqual(first_drink, desired_item)
+
+    # @unittest.skip("Delete this line to run the test")
+    def test_find_item_by_name__food(self):
+        first_food = self.pub.food_list[0]
+        desired_item = self.pub.find_item_by_name("pizza")
+        self.assertEqual(first_food, desired_item)
 
 
     # @unittest.skip("Delete this line to run the test")
@@ -50,7 +62,7 @@ class TestPub(unittest.TestCase):
 
     # @unittest.skip("Delete this line to run the test")
     def test_sell_drink_to_customer(self):
-        desired_drink = self.pub.find_drink_by_name("beer")
+        desired_drink = self.pub.find_item_by_name("beer")
         self.pub.sell_drink_to_customer(desired_drink, self.customer_example)
         self.assertEqual(47, self.customer_example.wallet)
         self.assertEqual(3, self.pub.till)
@@ -58,14 +70,14 @@ class TestPub(unittest.TestCase):
 
     # @unittest.skip("Delete this line to run the test")
     def test_sell_drink_to_customer__fail_age(self):
-        desired_drink = self.pub.find_drink_by_name("gin and tonic")
+        desired_drink = self.pub.find_item_by_name("gin and tonic")
         self.pub.sell_drink_to_customer(desired_drink, self.underage_customer)
         self.assertEqual(100, self.underage_customer.wallet)
         self.assertEqual(0, self.pub.till)
 
     # @unittest.skip("Delete this line to run the test")
     def test_sell_drink_to_customer__fail_drunk(self):
-        desired_drink = self.pub.find_drink_by_name("beer")
+        desired_drink = self.pub.find_item_by_name("beer")
         self.pub.sell_drink_to_customer(desired_drink, self.drunk_customer)
         self.assertEqual(40, self.drunk_customer.wallet)
         self.assertEqual(0, self.pub.till)
