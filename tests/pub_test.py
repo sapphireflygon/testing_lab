@@ -23,8 +23,20 @@ class TestPub(unittest.TestCase):
         desired_drink = self.pub.find_drink_by_name("gin and tonic")
         self.assertEqual(first_drink, desired_drink)
 
-    # test amount in till has gone up by the price of the drink
+    # @unittest.skip("Delete this line to run the test")
+    def test_find_drink_by_name__fail(self):
+        desired_drink = self.pub.find_drink_by_name("beer")
+        self.assertEqual(None, desired_drink)
+
+
     # @unittest.skip("Delete this line to run the test")
     def test_add_money_to_till(self):
         self.pub.add_money_to_till(5)
         self.assertEqual(5, self.pub.till)
+
+
+    @unittest.skip("Delete this line to run the test")
+    def test_sell_drink_to_customer(self):
+        pass
+
+    
