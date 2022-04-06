@@ -8,3 +8,5 @@ class Customer:
     def remove_money_from_customer(self, amount):
         self.wallet -= amount
     
+    def add_to_customer_drunkenness(self, alcohol_level):
+        self.drunkenness_level += alcohol_level

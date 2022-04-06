@@ -26,3 +26,8 @@ class TestCustomer(unittest.TestCase):
     # @unittest.skip("Delete this line to run the test")
     def test_customer_age(self):
         self.assertEqual(30, self.customer.age)
+
+    # @unittest.skip("Delete this line to run the test")
+    def test_add_to_customer_drunkenness(self):
+        self.customer.add_to_customer_drunkenness(18)
+        self.assertEqual(18, self.customer.drunkenness_level)
