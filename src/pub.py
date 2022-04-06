@@ -4,4 +4,8 @@ class Pub:
         self.till = input_till
         self.drinks_list = input_drinks_list
 
+    def find_drink_by_name(self, drink_name):
+        for drink in self.drinks_list:
+            if drink_name == drink.name:
+                return drink
     
