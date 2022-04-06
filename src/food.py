@@ -4,3 +4,4 @@ class Food:
         self.price = input_price
         self.rejuvenation_level = input_rejuvenation_level
         self.stock = input_stock
+        self.is_food = True

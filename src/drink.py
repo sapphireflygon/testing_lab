@@ -4,3 +4,4 @@ class Drink:
         self.price = input_price
         self.alcohol_level = input_alcohol_level
         self.stock = input_stock
+        self.is_drink = True

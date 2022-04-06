@@ -45,6 +45,25 @@ class TestPub(unittest.TestCase):
         desired_item = self.pub.find_item_by_name("pizza")
         self.assertEqual(first_food, desired_item)
 
+    # @unittest.skip("Delete this line to run the test")
+    def test_item_is_food(self):
+        first_food = self.pub.food_list[0]
+        self.assertEqual(True, first_food.is_food)
+
+    # @unittest.skip("Delete this line to run the test")
+    def test_item_is_not_food(self):
+        not_a_food = self.pub.drinks_list[0]
+        self.assertNotEqual(True, not_a_food)
+
+    # @unittest.skip("Delete this line to run the test")
+    def test_item_is_drink(self):
+        first_drink = self.pub.drinks_list[2]
+        self.assertEqual(True, first_drink.is_drink)
+
+    # @unittest.skip("Delete this line to run the test")
+    def test_item_is_not_food(self):
+        not_a_drink = self.pub.food_list[0]
+        self.assertNotEqual(True, not_a_drink)
 
     # @unittest.skip("Delete this line to run the test")
     def test_add_money_to_till(self):
