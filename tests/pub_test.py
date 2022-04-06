@@ -6,10 +6,11 @@ from src.customer import Customer
 
 class TestPub(unittest.TestCase):
     def setUp(self):
-        drinks_list = [Drink("water", 2, 100, 0), Drink("gin and tonic", 5, 20, 3)]
+        drinks_list = [Drink("water", 2, 100, 0), Drink("gin and tonic", 5, 20, 10), Drink("beer", 3, 50, 5)]
         self.pub = Pub("CodeClan Pub", 0, drinks_list)
         self.customer_example = Customer("John", 50, 0, 30)
         self.underage_customer = Customer("Josh", 100, 0, 16)
+        self.drunk_customer = Customer("Bob", 40, 100, 23)
 
     # @unittest.skip("Delete this line to run the test")
     def test_pub_has_name(self):
@@ -27,7 +28,7 @@ class TestPub(unittest.TestCase):
 
     # @unittest.skip("Delete this line to run the test")
     def test_find_drink_by_name__fail(self):
-        desired_drink = self.pub.find_drink_by_name("beer")
+        desired_drink = self.pub.find_drink_by_name("cider")
         self.assertEqual(None, desired_drink)
 
 
@@ -47,14 +48,22 @@ class TestPub(unittest.TestCase):
 
     # @unittest.skip("Delete this line to run the test")
     def test_sell_drink_to_customer(self):
-        desired_drink = self.pub.find_drink_by_name("water")
+        desired_drink = self.pub.find_drink_by_name("beer")
         self.pub.sell_drink_to_customer(desired_drink, self.customer_example)
-        self.assertEqual(48, self.customer_example.wallet)
-        self.assertEqual(2, self.pub.till)
+        self.assertEqual(47, self.customer_example.wallet)
+        self.assertEqual(3, self.pub.till)
+        self.assertEqual(5, self.customer_example.drunkenness_level)
 
     # @unittest.skip("Delete this line to run the test")
-    def test_sell_drink_to_customer__fail(self):
+    def test_sell_drink_to_customer__fail_age(self):
         desired_drink = self.pub.find_drink_by_name("gin and tonic")
         self.pub.sell_drink_to_customer(desired_drink, self.underage_customer)
         self.assertEqual(100, self.underage_customer.wallet)
+        self.assertEqual(0, self.pub.till)
+
+    # @unittest.skip("Delete this line to run the test")
+    def test_sell_drink_to_customer__fail_drunk(self):
+        desired_drink = self.pub.find_drink_by_name("beer")
+        self.pub.sell_drink_to_customer(desired_drink, self.drunk_customer)
+        self.assertEqual(40, self.drunk_customer.wallet)
         self.assertEqual(0, self.pub.till)

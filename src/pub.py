@@ -17,8 +17,9 @@ class Pub:
             return True
 
     def sell_drink_to_customer(self, desired_drink, customer):
-        if self.customer_is_over_18(customer) == True:
+        if self.customer_is_over_18(customer) == True and customer.drunkenness_level <= 20:
             customer.remove_money_from_customer(desired_drink.price)
             self.add_money_to_till(desired_drink.price)
+            customer.add_to_customer_drunkenness(desired_drink.alcohol_level)
 
     
