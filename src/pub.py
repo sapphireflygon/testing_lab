@@ -5,10 +5,14 @@ class Pub:
         self.drinks_list = input_drinks_list
         self.food_list = input_food_list
 
-    def find_drink_by_name(self, drink_name):
-        for drink in self.drinks_list:
-            if drink_name == drink.name:
-                return drink
+    def find_item_by_name(self, item_name):
+        for item in self.drinks_list:
+            if item_name == item.name:
+                return item
+
+        for item in self.food_list:
+            if item_name == item.name:
+                return item
     
     def add_money_to_till(self, amount):
         self.till += amount
@@ -17,10 +21,19 @@ class Pub:
         if customer.age >= 18:
             return True
 
-    def sell_drink_to_customer(self, desired_drink, customer):
-        if self.customer_is_over_18(customer) == True and customer.drunkenness_level <= 20:
-            customer.remove_money_from_customer(desired_drink.price)
-            self.add_money_to_till(desired_drink.price)
-            customer.add_to_customer_drunkenness(desired_drink.alcohol_level)
+    def sell_item_to_customer(self, desired_item, customer):
+        desired_item_data = self.find_item_by_name(desired_item)
 
-    
+        if desired_item_data != None and desired_item_data.stock != 0:
+            if hasattr(desired_item_data, "is_drink") == True:
+                if self.customer_is_over_18(customer) == True and customer.drunkenness_level <= 20:
+                    customer.add_to_customer_drunkenness(desired_item_data.alcohol_level)
+                else:
+                    return
+            else:
+                customer.drunkenness_level -= desired_item_data.rejuvenation_level
+            
+            customer.remove_money_from_customer(desired_item_data.price)
+            self.add_money_to_till(desired_item_data.price)
+            desired_item_data.stock -= 1
+
